@@ -1,3 +1,5 @@
+
+
 <section id="MainProduct-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -20,6 +22,8 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+    
+  
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -355,20 +359,37 @@
                 <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
                     <div class="product-form__input product-form__input--dropdown">
-                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
+                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}" style="">
                         {{ option.name }}
                       </label>
                       <div class="select">
-                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
+                        <select id="Option-{{ section.id }}-{{ forloop.index0 }} "
                           class="select__select"
                           name="options[{{ option.name | escape }}]"
                           form="{{ product_form_id }}"
                         >
-                          {%- for value in option.values -%}
-                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
-                              {{ value }}
+                        {%- for value in option.values -%}
+                        
+                        {% if product.variants[forloop.index0].metafields.Color.value and option.name == "Color" %}
+                            <option style="background-color:{{ product.variants[forloop.index0].metafields.color.value}} "  value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                                {{ value  }}   
                             </option>
+
+                        {% else %}
+
+                          <option >
+                            {{ value  }}   
+                          </option>
+
+                        {% endif %}
+
+
                           {%- endfor -%}
+
+                          
+
+
+
                         </select>
                         {% render 'icon-caret' %}
                       </div>

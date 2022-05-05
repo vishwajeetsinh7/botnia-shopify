@@ -85,6 +85,7 @@
 .color-accent-2 .button--secondary {
   --color-button: var(--color-background);
   --color-button-text: var(--color-foreground);
+  background-color: green;
 }
 
 .color-inverse .button--secondary {

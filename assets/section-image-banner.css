@@ -397,6 +397,8 @@
 
 .banner__heading {
   margin-bottom: 0;
+  color:white;
+  font-size: bold;
 }
 
 .banner__box .banner__heading + * {
@@ -409,6 +411,7 @@
   gap: 1rem;
   max-width: 45rem;
   word-break: break-word;
+  
 }
 
 @media screen and (max-width: 749px) {
