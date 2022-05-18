@@ -1,3 +1,21 @@
+<style>
+  .custom-color{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: -20px;
+    margin-bottom: 20px;
+    margin-top: -15px;
+  }
+
+  .custom-color p{
+    margin: 10px 20px;
+  }
+  .custom-color p select{
+    padding: 5px 15px;
+  }
+</style>
+
+
 <section id="MainProduct-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -421,9 +439,11 @@
 
                 {% if product.template_suffix == 'custom' %}
 
+                <div class="custom-color">
 
-                
-                <!-- color 1 -->
+                  <!-- <div class="select"> -->
+                                                      <!-- color 1 -->
+                <!-- {% if block.settings.color1 == blank %} -->
                 <p class="line-item-property__field">
                   <label>color1 </label><br>
                   <select required class="required" id="color1" name="properties[color1]">
@@ -435,10 +455,12 @@
                           {% endfor %}
                         </select>
                       </p>
+                      <!-- {%- endif -%} -->
+                  <!-- </div> -->
 
 
-
-                                      <!-- color 2 -->
+                  <!-- <div class="select"> -->
+                                                          <!-- color 2 -->
                 <p class="line-item-property__field">
                   <label>color2 </label><br>
                   <select required class="required" id="color2" name="properties[color2]">
@@ -451,9 +473,10 @@
                         </select>
                       </p>
 
+                  <!-- </div> -->
 
-
-                                      <!-- color 3 -->
+                  <!-- <div class="select"> -->
+                                                          <!-- color 3 -->
                 <p class="line-item-property__field">
                   <label>color3 </label><br>
                   <select required class="required" id="color3" name="properties[color3]">
@@ -465,11 +488,10 @@
                           {% endfor %}
                         </select>
                       </p>
+                  <!-- </div> -->
 
-
-
-
-                                      <!-- color 4 -->
+                  <!-- <div class="select"> -->
+                                                         <!-- color 4 -->
                 <p class="line-item-property__field">
                   <label>color4 </label><br>
                   <select required class="required" id="color4" name="properties[color4]">
@@ -481,6 +503,10 @@
                           {% endfor %}
                         </select>
                       </p>
+                <!-- </div> -->
+
+                  </div>
+
 
  
                 {% endif %}
