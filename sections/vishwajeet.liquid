@@ -1,0 +1,46 @@
+
+
+
+
+{% for block in section.blocks %}
+
+
+<label for="cc"> {{section.settings.color_heading}} </label>
+<select name="color" id="cc">
+    {% assign col = section.settings.color_option | split: ',' %}
+    {% for co in col %}
+    <option value="{{section.settings.color_option}}" > {{co}} </option>
+    {% endfor %}
+
+</select>
+
+
+{% endfor %}
+ 
+
+{% schema %}
+
+{
+    "name" : "4 color option", 
+    "blocks" : [
+        {
+            "type":  "Color_Selector", 
+            "name": "selectYourColor",
+            "settings" : [
+            {
+                "type": "text",
+                "label": "color variant",
+                "id": "color_heading"
+            
+            },
+            {
+                "type": "richtext",
+                "label": "color options[comma saperated]",
+                "id":  "color_option"
+            }
+            ]
+        }
+    ]
+}
+
+{% endschema %}

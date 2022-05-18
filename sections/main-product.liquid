@@ -1,5 +1,3 @@
-
-
 <section id="MainProduct-{{ section.id }}" class="page-width section-{{ section.id }}-padding" data-section="{{ section.id }}">
   {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
   {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
@@ -18,12 +16,10 @@
 
     @media screen and (min-width: 750px) {
       .section-{{ section.id }}-padding {
-        padding-top: {{ section.settings.padding_top }}px;
+        padding-top: {{ section.settings.padding_top }}px; 
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
-    
-  
   {%- endstyle -%}
 
   <script src="{{ 'product-form.js' | asset_url }}" defer="defer"></script>
@@ -359,37 +355,20 @@
                 <variant-selects class="no-js-hidden" data-section="{{ section.id }}" data-url="{{ product.url }}" {{ block.shopify_attributes }}>
                   {%- for option in product.options_with_values -%}
                     <div class="product-form__input product-form__input--dropdown">
-                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}" style="">
+                      <label class="form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
                         {{ option.name }}
                       </label>
                       <div class="select">
-                        <select id="Option-{{ section.id }}-{{ forloop.index0 }} "
+                        <select id="Option-{{ section.id }}-{{ forloop.index0 }}"
                           class="select__select"
                           name="options[{{ option.name | escape }}]"
                           form="{{ product_form_id }}"
                         >
-                        {%- for value in option.values -%}
-                        
-                        {% if product.variants[forloop.index0].metafields.Color.value and option.name == "Color" %}
-                            <option style="background-color:{{ product.variants[forloop.index0].metafields.color.value}} "  value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
-                                {{ value  }}   
+                          {%- for value in option.values -%}
+                            <option value="{{ value | escape }}" {% if option.selected_value == value %}selected="selected"{% endif %}>
+                              {{ value }}
                             </option>
-
-                        {% else %}
-
-                          <option >
-                            {{ value  }}   
-                          </option>
-
-                        {% endif %}
-
-
                           {%- endfor -%}
-
-                          
-
-
-
                         </select>
                         {% render 'icon-caret' %}
                       </div>
@@ -438,7 +417,80 @@
                 </div>
 
                 {%- form 'product', product, id: product_form_id, class: 'form', novalidate: 'novalidate', data-type: 'add-to-cart-form' -%}
-                  <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
+               
+
+                {% if product.template_suffix == 'custom' %}
+
+
+                
+                <!-- color 1 -->
+                <p class="line-item-property__field">
+                  <label>color1 </label><br>
+                  <select required class="required" id="color1" name="properties[color1]">
+                          {% for block in section.blocks %}
+                          {% assign color1 = block.settings.color1 | split: ',' %}
+                          {% for c1 in color1 %}
+                         <option value="{{c1}}">{{c1}}</option>
+                          {% endfor %}
+                          {% endfor %}
+                        </select>
+                      </p>
+
+
+
+                                      <!-- color 2 -->
+                <p class="line-item-property__field">
+                  <label>color2 </label><br>
+                  <select required class="required" id="color2" name="properties[color2]">
+                          {% for block in section.blocks %}
+                          {% assign color2 = block.settings.color2 | split: ',' %}
+                          {% for c2 in color2 %}
+                         <option value="{{c2}}">{{c2}}</option>
+                          {% endfor %}
+                          {% endfor %}
+                        </select>
+                      </p>
+
+
+
+                                      <!-- color 3 -->
+                <p class="line-item-property__field">
+                  <label>color3 </label><br>
+                  <select required class="required" id="color3" name="properties[color3]">
+                          {% for block in section.blocks %}
+                          {% assign color3 = block.settings.color3 | split: ',' %}
+                          {% for c3 in color3 %}
+                         <option value="{{c3}}">{{c3}}</option>
+                          {% endfor %}
+                          {% endfor %}
+                        </select>
+                      </p>
+
+
+
+
+                                      <!-- color 4 -->
+                <p class="line-item-property__field">
+                  <label>color4 </label><br>
+                  <select required class="required" id="color4" name="properties[color4]">
+                          {% for block in section.blocks %}
+                          {% assign color4 = block.settings.color4 | split: ',' %}
+                          {% for c4 in color4 %}
+                         <option value="{{c4}}">{{c4}}</option>
+                          {% endfor %}
+                          {% endfor %}
+                        </select>
+                      </p>
+
+ 
+                {% endif %}
+  
+               
+               
+               
+               
+               
+                <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" disabled>
                   <div class="product-form__buttons">
                     <button
                       type="submit"
@@ -773,6 +825,54 @@
           "info": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.info"
         }
       ]
+    },
+    {
+      "type": "color",
+      "name": "color1",
+      "settings": [
+      {
+        "type": "text",
+        "id": "color1",
+        "label": "color 1 [comma saperated]"
+      }
+      ]
+
+    },
+    {
+      "type": "color2",
+      "name": "color2",
+      "settings": [
+      {
+        "type": "text",
+        "id": "color2",
+        "label": "color 2 [comma saperated]"
+      }
+      ]
+
+    },
+    {
+      "type": "color3",
+      "name": "color3",
+      "settings": [
+      {
+        "type": "text",
+        "id": "color3",
+        "label": "color 3 [comma saperated]"
+      }
+      ]
+
+    },
+    {
+      "type": "color4",
+      "name": "color4",
+      "settings": [
+      {
+        "type": "text",
+        "id": "color4",
+        "label": "color 4 [comma saperated]"
+      }
+      ]
+
     },
     {
       "type": "collapsible_tab",
